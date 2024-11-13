@@ -1,0 +1,15 @@
+[build]
+  command = "flutter build web --web-renderer html"
+  publish = "build/web"
+
+[build.environment]
+  PATH = "/opt/buildhome/flutter/bin:/opt/buildhome/flutter/bin/cache/dart-sdk/bin:$PATH"
+
+[build.processing]
+  skip_processing = true
+
+[context.production.environment]
+  FLUTTER_VERSION = "3.7.0"  # Replace with your required Flutter version
+
+[build.lifecycle]
+  before_build = "curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz | tar -xJ -C /opt && mv /opt/flutter /opt/buildhome/flutter"
